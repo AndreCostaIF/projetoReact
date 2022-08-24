@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import { StyleSheet, Text, View, Image, WebView, TouchableOpacity,  PermissionsAndroid, ScrollView, Alert } from 'react-native';
 import api from './utilities/api.js'
 import RNFetchBlob from 'rn-fetch-blob';
-
+import Icon from 'react-native-vector-icons/FontAwesome';
+import SplashScreen from 'react-native-splash-screen';
 const styles = StyleSheet.create({
     container:{
       flex:1,
@@ -45,7 +46,7 @@ const styles = StyleSheet.create({
     }   
     
     componentDidMount(){
-      
+      SplashScreen.hide();
       api.nasaPics().then((res)=>{
         this.setState({
           title:res.title,
@@ -72,7 +73,7 @@ const styles = StyleSheet.create({
        // Function to check the platform
     // If iOS then start downloading
     // If Android then ask for permission
-      if(this.state.email){
+      if(global.token){
         if (Platform.OS === 'ios') {
         
           this.downloadImage();
@@ -179,8 +180,8 @@ const styles = StyleSheet.create({
             style={styles.button}
             onPress={this.checkPermission.bind(this)}>
             <Text style={styles.text}>
-              Baixar Imagem
-            </Text>
+              Baixar Imagem  <Icon name="download" size={20} color='#fff' />
+            </Text> 
         </TouchableOpacity>
           <Text style={styles.text}>{this.state.explanation}</Text>
           </View>

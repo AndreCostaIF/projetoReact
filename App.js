@@ -1,16 +1,16 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View, Image, WebView } from 'react-native';
+import React, {useEffect} from 'react';
+import { StyleSheet, Text, View, Image, WebView  } from 'react-native';
 
 import { createAppContainer } from 'react-navigation';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-
 import Apod from './apod';
 import Login from './login';
 
+
 Icon.loadFont();
+
 
 const mainNavigation = createMaterialBottomTabNavigator(
   {
@@ -38,7 +38,8 @@ const mainNavigation = createMaterialBottomTabNavigator(
   },
 );
 
-export default createAppContainer(mainNavigation);
+const App = createAppContainer(mainNavigation);
+export default App;
 
 const styles = StyleSheet.create({
   container:{
